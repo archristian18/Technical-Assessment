@@ -101,8 +101,8 @@ function Post(props) {
                 // if else, Is for the Validation of form inputed
                         if(res.data.status === 200)
                         {
-                            // window.location.reload();     
-                            history.push('/home');                  
+                            window.location.reload();     
+                            // history.push('/home');                  
                         }
 
                         else if(res.data.status === 404)
@@ -151,7 +151,7 @@ function Post(props) {
      
             <article className="blog-details" key={index.toString()}>
             <div className="post-img" >
-              <img  src={item.image} alt="" className="img-fluid " style={{ display: 'block',  marginLeft: 'auto',  marginRight: 'auto',  width: '50%' }} />
+              <img  src={item.image} alt="" className="img-fluid " style={{ display: 'block',     marginRight: 'auto',  width: '100%' }} />
             </div>
             <h2 className="title">{item.text}</h2>
             <div className="meta-top">
@@ -212,9 +212,9 @@ function Post(props) {
 
       {/* ======= Blog Details Section ======= */}
       <section id="blog" className="blog comment-reply">
-        <div className="container" data-aos="fade-up">
+        <div className="container">
           <div className="row g-5">
-            <div className="col-lg-10" data-aos="fade-up" data-aos-delay={200} style={{marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto'}}>
+            <div className="col-lg-10" style={{marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto'}}>
             {posts_HTMLTABLE}     
               <div className="comments">
                 <h4 className="comments-count">Comments</h4>

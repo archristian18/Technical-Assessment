@@ -1,21 +1,24 @@
 import React, {useState, useEffect} from "react";
-import {Link, useHistory} from 'react-router-dom';
 import axios from 'axios';
-import swal from 'sweetalert';
-import Navbar from './Navbar';
+import {Link, useHistory} from 'react-router-dom';
+
+
+import Footer from './Footer';
+import Header from './Header';
+import Banner from './Banner';
+
+
+
 
 function MyPost() {
 
-    
     const history = useHistory();
-    const id =  localStorage.getItem('id');
-
-    const [posts, setPost] = useState([]); 
-
-    // Getting the value database backend Post
+    const [posts, setPost] = useState([]);
+    
+    // Getting the value database backend
     useEffect(() => {
-
-        axios.post(`api/mypost${id}`).then(res=>{
+    
+        axios.get(`api/author/posts`).then(res=>{
             if(res.status === 200)
             {
                 setPost(res.data.posts);
@@ -24,79 +27,99 @@ function MyPost() {
                 history.push('/author/login');
             }
         });
-
+    
     }, []);
+    
+    var posts_HTMLTABLE = "";
 
- // const delete, Created to delete the specific post
-    const deletePost = async (e, id) => {
-        e.preventDefault();
-        
-        const thisClicked = e.currentTarget;
-
-        await axios.delete(`/api/post/delete${id}`).then(res=>{
-            if(res.data.status === 200)
-            {
-                swal("Deleted!",res.data.message,"success");
-                thisClicked.closest("div").remove();
-                // history.push('/author/posts');
-            }
-            else if(res.data.status === 404)
-            {
-                swal("Error",res.data.message,"error");
-                // thisClicked.innerText = "Delete";
-                history.push('/mypost');
-            }
-        });
-    }
-
-
-        var posts_HTMLTABLE = "";
-
-        posts_HTMLTABLE = posts.map( (item, index) => {
-            return (
-                     
-                            <div className="well" name="post" key={index.toString()}>
-                                    <div className="media">
-                                        <div className="pull-left"  >
-                                        {item.name}
-                                        <img  className="media-object"  src={item.image} width="30%" height="30%" alt="" />                                
-                                       
-                                        <h4 className="media-heading">{item.text}</h4>
-                                        </div>
-                                                                             
-                                    </div>
-                                    <div className="media">
-                                    <div className="pull-left"  >
-                                    
-                                    <Link className="nav-link" to={`/post/edit/${item.id}`}>Edit</Link> 
-                                    <Link className="nav-link" to={`/comment/add/${item.id}`}>Comment</Link>
-                                    </div>
-                                  
-                                    </div> 
-                                    <span className="nav-link" onClick={(e) => deletePost(e, item.id)} >Delete</span>
+    posts_HTMLTABLE = posts.map( (item, index) => {
+        return (
+                 
+                        <div className="col-lg-6"  key={index.toString()}>
+                        {/* Start post list item */}
+                        <article className="d-flex flex-column">
+                            <div className="post-img">
+                            <img src={item.image} alt="" className="img-fluid" /> 
                             </div>
-                       
-                      
-            );
-        });
-    
+                            <h2 className="title">
+                            <a href="blog-details.html">{item.text}</a>
+                            </h2>
+                            <div className="meta-top">
 
-    
-  return (
+                            <ul>
 
-<div>
-<Navbar />
-    <div className="container" >
+
+                                <li ><i className="bi bi-emoji-smile-fill" /> <a href="blog-details.html">React</a></li>
+                                  
+                                <li ><i className="bi bi-person" /> <a href="blog-details.html">{item.name}</a></li>
+                                <li ><i className="bi bi-chat-dots" /> <Link className="nav-link" to={`/post/${item.id}`}>Comments</Link></li>
+                                <li ><i className="bi bi-book" /> <Link className="nav-link" to={`/post/${item.id}`}>Edit</Link></li>
+                                <li ><i className="bi bi-trash" /> <Link className="nav-link" to={`/post/${item.id}`}>Delete</Link></li>
+                             
+                            </ul>
+                            </div>
+                            <div className="content">
+
+                            </div>
+
+                        </article>
+                        {/* End post list item */}
+                        </div>
+                   
+                  
+        );
+    });
+
+
+
+      return (
+        <div >
+
    
-        {posts_HTMLTABLE}  
+          <Header />
+
+          
+          <main id="main">
+
+         <Banner />
+
+
+            {/* ======= Blog Section ======= */}
+            <section id="blog" className="blog">
+              <div className="container">
+
+                <div className="row g-5">
+                  <div className="col-lg-12" >
+                    <div className="row gy-5 posts-list">
+
+                     
+                    {posts_HTMLTABLE}  
+
+
+
+                    </div>{/* End blog posts list */}
+
+
+
+                    
+                  </div>
+                </div>
+              </div>
+            </section>{/* End Blog Section */}
+
+
+            
+          </main>{/* End #main */}
+
         
-    </div>
+            <Footer />
+
+
+
+        </div>
+        
+      );
     
-</div>
-    );
-}
+  }
 
-export default MyPost;
-
-
-
+  export default MyPost;

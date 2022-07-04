@@ -45,6 +45,7 @@ function Homepage() {
                             <a href="blog-details.html">{item.text}</a>
                             </h2>
                             <div className="meta-top">
+
                             <ul>
                                 <li ><i className="bi bi-person" /> <a href="blog-details.html">{item.name}</a></li>
                                 <li ><i className="bi bi-chat-dots" /> <Link className="nav-link" to={`/post/${item.id}`}>Comments</Link></li>
@@ -79,10 +80,10 @@ function Homepage() {
 
             {/* ======= Blog Section ======= */}
             <section id="blog" className="blog">
-              <div className="container" data-aos="fade-up">
+              <div className="container">
 
                 <div className="row g-5">
-                  <div className="col-lg-12" data-aos="fade-up" data-aos-delay={200}>
+                  <div className="col-lg-12" >
                     <div className="row gy-5 posts-list">
 
                      

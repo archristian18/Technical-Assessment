@@ -1,6 +1,12 @@
 import React from 'react';
 
+
+
+
+
 function Banner() {
+
+  const name =  localStorage.getItem('name');
 
       return (          
           
@@ -9,7 +15,7 @@ function Banner() {
             {/* ======= Breadcrumbs ======= */}
 
               <div className="container position-relative d-flex flex-column align-items-center">
-                <h2>Welcome Author1</h2>
+                <h2>Welcome {name}</h2>
               </div>
               {/* End Breadcrumbs */}
 
