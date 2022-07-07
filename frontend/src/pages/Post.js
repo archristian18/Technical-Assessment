@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import Footer from './Footer';
 import Banner from './Banner';
-
+import ReactComment from './ReactComment';
 
 import '../assets/img/favicon.png';
 import '../assets/img/apple-touch-icon.png';
@@ -141,7 +141,7 @@ function Post(props) {
             if(res.data.status === 200)
             {
                 swal("Deleted!",res.data.message,"success");
-                thisClicked.closest("div").remove();
+                thisClicked.closest("article").remove();
              
             }
             else if(res.data.status === 404)
@@ -154,12 +154,31 @@ function Post(props) {
             }
         });
     }
-    var posts_HTMLTABLE = "";
 
-    posts_HTMLTABLE = posts.map( (item, index) => {
-        return (
+
+    
+
+
+    return (
+
+        <div >
+
+   
      
-            <article className="blog-details" key={index.toString()}>
+<Banner />
+        
+      <main id="main">
+
+      {/* ======= Blog Details Section ======= */}
+      <section id="blog" className="blog comment-reply">
+        <div className="container">
+          <div className="row g-5">
+            <div className="col-lg-10" style={{marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto'}}>
+
+
+            {/* POST IMAGE AND TEXT */}
+            {Object.entries(posts).map(([key, item]) => (
+              <article className="blog-details" key={key}>
             <div className="post-img" 
             style={{
 
@@ -185,21 +204,17 @@ function Post(props) {
             </div>{/* End post content */}
             {/* End blog post */}
           </article>
-                   
-                  
-        );
-    });
-    
+              ))}
 
-    
 
-    var commentView_HTMLTABLE = "";
-    commentView_HTMLTABLE = comments.map( (item, index) => {
+              <div className="comments">
+                <h4 className="comments-count">Comments</h4>
 
-    
-        return (
-                            <div id="comment-1" className="comment"  key={index}>
-                            <div className="d-flex blog-details">
+          
+
+                {Object.entries(comments).map(([key, item]) => (
+                  <article id="comment-1" className="comment"  key={key}>
+                            <div className="d-flex blog-details" style={{padding:'15px'}}>
 
 
                             <p onClick={(e) => deletePost(e, item.id)} className="nav-link"  
@@ -209,41 +224,17 @@ function Post(props) {
 
                             <div>
                                 <h5>{item.name}</h5>
-                            
-                                <p>
                                 {item.text}
-                                </p>
                             </div>
-                            </div>
+                
+                       
+                            </div><div style={{padding:'7px'}}>
+                            Like 
+                            &nbsp; <ReactComment props={item.id}/></div>
                             {/* End comment #1 */}
-                        </div>
-                    );
-         });
+                  </article>
+              ))}
 
-
-    return (
-
-        <div >
-
-   
-     
-<Banner />
-        
-        <main id="main">
-
-   
-
-
-      {/* ======= Blog Details Section ======= */}
-      <section id="blog" className="blog comment-reply">
-        <div className="container">
-          <div className="row g-5">
-            <div className="col-lg-10" style={{marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto'}}>
-            {posts_HTMLTABLE}     
-              <div className="comments">
-                <h4 className="comments-count">Comments</h4>
-
-                {commentView_HTMLTABLE} 
                                             
                 
                 <div className="reply-form">

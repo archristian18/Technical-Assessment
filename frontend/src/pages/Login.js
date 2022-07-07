@@ -45,11 +45,7 @@ function Login() {
                 // if else, Is for the Validation of form inputed
                 if(res.data.status === 200)
                 {
-                    setAuthor({
-                        name: '',
-                        password: '',
-                        error_list: [],
-                    });
+
 
                     localStorage.setItem('name', res.data.name)
                     localStorage.setItem('id', res.data.id)

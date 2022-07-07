@@ -29,7 +29,7 @@ class PostController extends Controller
             ->select()
             ->get();
 
-
+        $comments = Post::withCount('comment')->get();
 
         if($varable === NULL){
         return response()->json([
@@ -40,14 +40,18 @@ class PostController extends Controller
         }
         else {
             $data = [];
+
             foreach($varable as $image) {
                 $temp = [];
                 $temp['image'] = URL::to('').$image->image;
                 $temp['text'] = $image->text;
                 $temp['id'] = $image->id;
                 $temp['name'] = $image->name;
+                // $temp['commentCount'] = commentCount($image->id);
                 $data[] = $temp;
             }
+
+
             return response()->json([
                 'status'=> 200,
                 'posts'=>$data,
@@ -56,9 +60,20 @@ class PostController extends Controller
         }
     }
 
+    //count all comment
+    public function commentCount($id) {
+        //query return count or size of comment
+
+        $users = DB::table('comments')
+        ->where('post_id', $id)
+        ->count();
+
+        return $users;
+    }
+
+
 
     // Display authors/users post,  Mypost page
-
     public function mypost($id)
     {
        

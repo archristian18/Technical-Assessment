@@ -91,6 +91,7 @@ function MyPost() {
                                 <ReactPost props={item.id}/>
                                 <li>
                                 <i className="bi bi-chat-dots"/>
+                              
                                 <Link className="nav-link" to={`/post/${item.id}`}>
                                 Comments</Link>
                                 </li>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import axios from 'axios';
 
 function ReactCountPost({props}) {
@@ -11,11 +11,12 @@ function ReactCountPost({props}) {
 
     const [countComment, setCountComment] = useState([]); 
    
-            const data = {
-                post_id:post_id,
-            }
 
 
+            useEffect(() => {
+                const data = {
+                    post_id:post_id,
+                }
             axios.post(`api/reactpost/count`, data).then(res=>{
                 if(res.status === 200)
                 {
@@ -26,7 +27,7 @@ function ReactCountPost({props}) {
                 }
 
             });
-
+        }, []);
     return(
          <>
 

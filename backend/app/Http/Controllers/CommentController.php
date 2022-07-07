@@ -167,14 +167,7 @@ class CommentController extends Controller
 
 
                  $data = [];
-                 foreach($varable as $image) {
-                     $temp = [];
-                     $temp['image'] = URL::to('').$image->image;
-                     $temp['text'] = $image->text;
-                     $temp['id'] = $image->id;
-                     $temp['name'] = $image->name;
-                     $data[] = $temp;
-                 }
+
      
 
              if($varable === NULL){
@@ -185,6 +178,14 @@ class CommentController extends Controller
              ]);
              }
              else {
+                foreach($varable as $image) {
+                    $temp = [];
+                    $temp['image'] = URL::to('').$image->image;
+                    $temp['text'] = $image->text;
+                    $temp['id'] = $image->id;
+                    $temp['name'] = $image->name;
+                    $data[] = $temp;
+                }
                  return response()->json([
                      'status'=> 200,
                      'posts'=>$data,

@@ -48,9 +48,10 @@ function Banner() {
                   <li><Link to="/home">Home</Link></li>
                   <li> <Link to="/mypost">My Post</Link></li>
                   <li><Link to="/author/add">Add Post</Link></li>
-                  <li onClick={logoutSubmit}><Link to="">Logout</Link></li>
+                 
 
                 </ul>
+                <Link onClick={logoutSubmit} to="/author/login">Logout</Link>
               </nav>{/* .navbar */}
 
             </div>

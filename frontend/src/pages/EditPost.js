@@ -3,7 +3,6 @@ import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 
-
 import '../assets/img/favicon.png';
 import '../assets/img/apple-touch-icon.png';
 import '../assets/vendor/bootstrap/css/bootstrap.min.css';
@@ -27,8 +26,9 @@ function EditPost(props) {
          error_list: [],
      });
  
-     const [imagedata, setImagedata] = useState('');
+     const editorState = useState('');
 
+     const [imagedata, setImagedata] = useState('');
 
    // Comment Post Display
    useEffect(() => {
@@ -116,7 +116,7 @@ function EditPost(props) {
                                         <input type="text" name="text" onChange={handleInput} value={postInput.text}  className="form-control" />
                                         {/* <span className="text-danger">{postInput.error_list.text}</span> */}
                                     </div>
-                                   
+                   
                                     <div className="form-group mb-3">
                                         <button type="submit" className="btn btn-primary">Submit Post</button>
                                     </div>

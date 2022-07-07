@@ -31,7 +31,6 @@ function Homepage() {
             if(res.status === 200)
             {
                 setPost(res.data.posts);
-            
             }
             else if(res.status === 401){
                 history.push('/author/login');
@@ -45,6 +44,8 @@ function Homepage() {
 
 
 
+
+
       return (
         <div >
 
@@ -54,6 +55,9 @@ function Homepage() {
           
           <main id="main">
 
+     
+
+
             {/* ======= Blog Section ======= */}
             <section id="blog" className="blog">
               <div className="container">
@@ -62,6 +66,10 @@ function Homepage() {
                   <div className="col-lg-12" >
                     <div className="row gy-5 posts-list">
 
+                     
+       
+
+                    
                     {Object.entries(posts).map(([key, item]) => (
                       <div className="col-lg-6"   key={key}>
                         {/* Start post list item */}
@@ -78,6 +86,7 @@ function Homepage() {
                             <div className="meta-top">
 
                           <ul>
+     
 
                             <ReactCountPost props={item.id}/>
                             &nbsp;
@@ -108,9 +117,9 @@ function Homepage() {
                         </article>
                         {/* End post list item */}
                         </div>
-                  ))}
+                     
 
-
+                            ))}
 
                     </div>{/* End blog posts list */}
 

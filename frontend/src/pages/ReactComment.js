@@ -3,20 +3,17 @@ import axios from 'axios';
 import swal from 'sweetalert';
 
 
-
-
-function ReactPost({props}) {
+function ReactComment({props}) {
 
     const [react, setReact] = useState();
     const author_id =  localStorage.getItem('id');
     const comment_id = props;
+    const [selected, setSelected] = useState("");
 
-    // const smile = "\u{1F642}";
-    // const heart = "\u{1F497}";
-    // const like = "\u{1F44D}";
- 
-
-
+    const select = {
+        border: '0px'  
+  
+      }
         // Getting the value database backend
         useEffect(() => {
             const data = {
@@ -28,19 +25,6 @@ function ReactPost({props}) {
                 if(res.data.status === 200)
                 {
                     setReact(res.data.check);
-                    // switch (res.data.check) {
-                    //     case "like":
-                    //         setReact(like);                         
-                    //       break;
-                    //     case "heart":
-                    //         setReact(heart);
-                    //       break;
-                    //     case "smile":
-                    //         setReact(smile);
-                    //       break;
-                    //     default:
-                    //         setReact("");
-                    //   }                    
                 }
 
             });
@@ -52,7 +36,10 @@ function ReactPost({props}) {
          // const delete, Created to delete the specific id
          const handleChange = (e) => {
             e.preventDefault();
-            
+
+            const selected = e.target.value;
+            setSelected(selected);
+
             const data = {
                 name:e.target.value,
                 comment_id:comment_id,
@@ -77,22 +64,16 @@ function ReactPost({props}) {
     return(
   
             
-            <select name="react" id="details"  onChange={e => handleChange(e)}> 
-                {/* <option value="NULL" id="1">{react}</option>
-                <option value="like" id="2">{like}</option>
-                <option value="heart" id="3">{heart}</option>
-                <option value="smile" id="4">{smile}</option>  */}
-
-
-                <option value="NULL" id="1">{react}</option>
-                <option value="like" id="2">👍</option>
-                <option value="heart" id="3">❤️</option>
-                <option value="smile" id="4">🙂</option> 
-                                             
+        <select name="react" id="details"   defaultValue={'DEFAULT'}   onChange={e => handleChange(e)} style={select}> 
+        <option value="DEFAULT" id="0"  disabled hidden>{react}</option>
+        <option value="👍" id="2" >👍</option>
+        <option value="❤️" id="3">❤️</option>
+        <option value="🙂" id="4">🙂</option> 
+                                         
             </select>
    
     );
 
 }
 
-export default ReactPost;
+export default ReactComment;
