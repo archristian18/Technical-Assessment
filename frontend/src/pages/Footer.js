@@ -4,7 +4,8 @@ import React from 'react';
 function Footer() {
 
       return (
-        <footer id="footer" className="footer">
+        <footer id="footer" className="footer" >
+        
         {/* ======= Footer ======= */}
             <div className="footer-content">
               <div className="container">

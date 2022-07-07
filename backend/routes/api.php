@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ReactPostController;
 use App\Http\Controllers\ReactCommentController;
+use App\Http\Controllers\CountController;
 
 
     Route::post("/login/auth", [AuthorController::class, 'loginAuth']);
@@ -32,9 +33,11 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
     //COMMENT PAGE
     Route::post("/comment/posts{id}", [CommentController::class, 'posts']);
-    Route::post("/comment{id}", [CommentController::class, 'index']);
+    Route::post("/comment", [CommentController::class, 'index']);
     Route::post("/comment/add", [CommentController::class, 'comment']);
     Route::post("/comment/delete", [CommentController::class, 'destroy']);
+
+
 
     //React Post 
     Route::post("/react/post", [ReactPostController::class, 'store']);
@@ -43,6 +46,11 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     //React Comment
     Route::post("/react/comment", [ReactCommentController::class, 'store']);
     Route::post("/react/comment/view", [ReactCommentController::class, 'index']);
+
+    
+    Route::get("/comment/count{id}", [CountController::class, 'comment']);
+    Route::post("/reactpost/count", [CountController::class, 'postReact']);
+
 });
     
 

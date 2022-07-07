@@ -2,10 +2,10 @@ import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import Register from './pages/Register';
-import View from './pages/View';
+
 import Login from './pages/Login';
 import AddPost from './pages/AddPost';
-import Comment from './pages/Comment';
+
 import EditPost from './pages/EditPost';
 import MyPost from './pages/MyPost';
 
@@ -32,17 +32,18 @@ function App() {
 
           <Switch>
             <Route path="/home" component={Homepage} />
-            <Route path="/post/:id" component={Post} />
-
-
-            <Route path="/author/add" component={AddPost} />
-            <Route path="/author/posts" component={View} />
-            <Route path="/register" component={Register} />
-            <Route path="/author/login" component={Login} />
-            <Route path="/comment/add/:id" component={Comment} />
-            <Route path="/post/edit/:id" component={EditPost} />
+            {/* comment POST */}
+            <Route path="/post/:id" component={Post} /> 
+            {/* My post  */}
             <Route path="/mypost" component={MyPost} />
 
+            <Route path="/author/add" component={AddPost} />
+            <Route path="/register" component={Register} />
+            <Route path="/author/login" component={Login} />
+
+            <Route path="/edit/:id" component={EditPost} />
+
+        
 
           </Switch>
         </Router>

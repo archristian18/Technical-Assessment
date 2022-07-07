@@ -5,7 +5,6 @@ import axios from 'axios';
 
 
 import Footer from './Footer';
-import Header from './Header';
 import Banner from './Banner';
 
 
@@ -25,7 +24,7 @@ function Post(props) {
 
      //Show button when input text have value
      const [show, setShow] = useState(true);
-     
+             
     //Value Id for post
     const post_id = props.match.params.id;
     //Directory
@@ -38,6 +37,7 @@ function Post(props) {
     const [comments, setCommentPost] = useState([]);
 
     const author_id =  localStorage.getItem('id');
+
     const [commentInput, setComment] = useState({
         comment: '',
         error_list: [],
@@ -62,20 +62,29 @@ function Post(props) {
  useEffect(() => {
 
 
-        axios.post(`api/comment${post_id}`).then(res=>{
+  const data = {
+    post_id:post_id,
+    author_id:author_id,
+}
+
+
+
+        axios.post(`api/comment`, data).then(res=>{
             if(res.status === 200)
             {
+
                 setCommentPost(res.data.comment);
                 history.push('/comment/add/:'.post_id);
             }
             else if(res.status === 401){
                 history.push('/author/login');
-            }
+            } 
         });
 
         axios.post(`api/comment/posts${post_id}`).then(res=>{
             if(res.status === 200)
             {
+               
                 setPost(res.data.posts);
             }
             else if(res.status === 401){
@@ -133,10 +142,11 @@ function Post(props) {
             {
                 swal("Deleted!",res.data.message,"success");
                 thisClicked.closest("div").remove();
-            
+             
             }
             else if(res.data.status === 404)
             {
+            
                 swal("Error",res.data.message,"error");
             }
             else if(res.data.status === 422){
@@ -150,8 +160,14 @@ function Post(props) {
         return (
      
             <article className="blog-details" key={index.toString()}>
-            <div className="post-img" >
-              <img  src={item.image} alt="" className="img-fluid " style={{ display: 'block',     marginRight: 'auto',  width: '100%' }} />
+            <div className="post-img" 
+            style={{
+
+              height: '500px',
+
+            }}>      
+
+              <img  src={item.image} alt="" className="img-fluid " style={{ display: 'block',     marginRight: 'auto',  width: '100%', height: '500px' }} />
             </div>
             <h2 className="title">{item.text}</h2>
             <div className="meta-top">
@@ -175,14 +191,22 @@ function Post(props) {
     });
     
 
+    
+
     var commentView_HTMLTABLE = "";
     commentView_HTMLTABLE = comments.map( (item, index) => {
+
+    
         return (
-                            <div id="comment-1" className="comment" key={index}>
-                            <div className="d-flex">
-                        <p onClick={(e) => deletePost(e, item.id)} className="nav-link"  style={{  width: '2%', fontSize:'10px' }}>
-                X 
-                                </p>
+                            <div id="comment-1" className="comment"  key={index}>
+                            <div className="d-flex blog-details">
+
+
+                            <p onClick={(e) => deletePost(e, item.id)} className="nav-link"  
+                            style={{  width: '2%', fontSize:'10px', display:(author_id == item.author_id)? 'block' : 'none'}} >
+                            X 
+                            </p>
+
                             <div>
                                 <h5>{item.name}</h5>
                             
@@ -202,12 +226,12 @@ function Post(props) {
         <div >
 
    
-        <Header />
-
+     
+<Banner />
         
         <main id="main">
 
-       <Banner />
+   
 
 
       {/* ======= Blog Details Section ======= */}

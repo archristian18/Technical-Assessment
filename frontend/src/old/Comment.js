@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import {useHistory} from 'react-router-dom';
 import swal from 'sweetalert';
 import axios from 'axios';
-import ReactComment from './ReactComment';
+
 
 function Comment (props)
 {

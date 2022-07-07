@@ -48,16 +48,16 @@ class CommentController extends Controller
     }
 
     // Display Comment in specific Post
-    public function index($id)
+    public function index(Request $request)
     {   
 
-        $varable = DB::table('authors')
-        ->join('comments', 'authors.id', '=', 'comments.author_id')
-        ->where('post_id', $id)
-        ->select()
-        ->get();
-     
+                $varable = DB::table('authors')
+                ->join('comments', 'authors.id', '=', 'comments.author_id')
+                ->where('post_id', $request->post_id)
+                ->select()
+                ->get();
         
+
         if($varable === null)
         {
             $varable = Post::find($id);
@@ -65,16 +65,24 @@ class CommentController extends Controller
                 'status'=> 404,
                 'message' => 'No Post ID Found',
                 'comment'=>$varable,
+                'author_id'=>$varable->author_id,
 
             ]);
         }
         else
-        {            
+        {     
+                   
             return response()->json([
                 'status'=> 200,
                 'message'=>'Post Comment Successfully',
                 'comment'=>$varable,
             ]);
+
+
+
+
+
+            
         }
 
     }
@@ -150,6 +158,7 @@ class CommentController extends Controller
          public function posts($id)
          {
             
+
              $varable = DB::table('authors')
                  ->join('posts', 'authors.id', '=', 'posts.author_id')
                  ->where('posts.id', $id)
@@ -182,5 +191,8 @@ class CommentController extends Controller
                
                  ]);
              }
+
+
          }
+
 }

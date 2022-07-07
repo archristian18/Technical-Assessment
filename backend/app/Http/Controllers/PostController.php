@@ -29,15 +29,7 @@ class PostController extends Controller
             ->select()
             ->get();
 
-        $data = [];
-        foreach($varable as $image) {
-            $temp = [];
-            $temp['image'] = URL::to('').$image->image;
-            $temp['text'] = $image->text;
-            $temp['id'] = $image->id;
-            $temp['name'] = $image->name;
-            $data[] = $temp;
-        }
+
 
         if($varable === NULL){
         return response()->json([
@@ -47,6 +39,15 @@ class PostController extends Controller
         ]);
         }
         else {
+            $data = [];
+            foreach($varable as $image) {
+                $temp = [];
+                $temp['image'] = URL::to('').$image->image;
+                $temp['text'] = $image->text;
+                $temp['id'] = $image->id;
+                $temp['name'] = $image->name;
+                $data[] = $temp;
+            }
             return response()->json([
                 'status'=> 200,
                 'posts'=>$data,
@@ -68,15 +69,7 @@ class PostController extends Controller
             ->get();
 
 
-        $data = [];
-        foreach($varable as $image) {
-            $temp = [];
-            $temp['image'] = URL::to('').$image->image;
-            $temp['text'] = $image->text;
-            $temp['id'] = $image->id;
-            $temp['name'] = $image->name;
-            $data[] = $temp;
-        }
+
 
         if($varable === NULL){
         return response()->json([
@@ -86,6 +79,15 @@ class PostController extends Controller
         ]);
         }
         else {
+            $data = [];
+            foreach($varable as $image) {
+                $temp = [];
+                $temp['image'] = URL::to('').$image->image;
+                $temp['text'] = $image->text;
+                $temp['id'] = $image->id;
+                $temp['name'] = $image->name;
+                $data[] = $temp;
+            }
             return response()->json([
                 'status'=> 200,
                 'posts'=>$data,
@@ -115,18 +117,8 @@ class PostController extends Controller
 
         ]);
 
-        if($validator->fails())
+        if(!$validator)
         {
-            return response()->json([
-                'status'=> 422,
-                'validate_err'=> $validator->messages(),
-            ]);
-        }
-        else
-        {
-
-     
-
             // Store the Image inside lavaravel storage
             $requestData = [];
             $fileName = time().$request->file('image')->getClientOriginalName();
@@ -146,6 +138,15 @@ class PostController extends Controller
             'status'=> 200,
             'message'=>'Added Successfully',
         ]);
+        }
+        else
+        {
+
+            return response()->json([
+                'status'=> 422,
+                'validate_err'=> $validator->messages(),
+            ]);
+
         }
 
     }

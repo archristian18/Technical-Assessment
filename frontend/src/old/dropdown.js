@@ -1,17 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
-
+import '../assets/dropdown/style.css';
 
 
 
 function ReactPost({props}) {
-
-    const select = {
-      border: '0px'  
-
-    }
 
     const [react, setReact] = useState();
     const author_id =  localStorage.getItem('id');
@@ -21,7 +16,8 @@ function ReactPost({props}) {
     const history = useHistory();
 
 
-
+        // Getting the value database backend
+        useEffect(() => {
             const data = {
                 post_id:post_id,
                 author_id:author_id,
@@ -37,7 +33,7 @@ function ReactPost({props}) {
 
             });
     
-   
+        }, []);
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -68,14 +64,23 @@ function ReactPost({props}) {
  
     return(
   
+<div class="dropup">
+  <span role="img" aria-labelledby="like" value="👍">👍</span>
+  <div class="dropup-content">
+
+  <div  onChange={e => handleChange(e)}>
+  <span role="img" aria-labelledby="like" value="👍">👍</span>
+  <span role="img" aria-labelledby="smile" value="🙂">🙂</span>
+  <span role="img" aria-labelledby="love" value="❤️" >❤️</span>
         
-        <select name="react" id="details"  onChange={e => handleChange(e)} style={select}> 
-        <option value="NULL" id="0" selected disabled hidden>{react}</option>
-        <option value="👍" id="2" >👍</option>
-        <option value="❤️" id="3">❤️</option>
-        <option value="🙂" id="4">🙂</option> 
-        </select>
-  
+    </div>
+
+  </div>
+</div>
+
+
+
+ 
    
     );
 
