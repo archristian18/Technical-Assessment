@@ -1,6 +1,6 @@
 # Technical-Assessment
 
- layout
+* layout
 * implement emojis / icons
 * continue with implementation of comments and react comments
 * multiple user reactions per comment / post
