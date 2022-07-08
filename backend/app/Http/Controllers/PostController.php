@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\URL;
+
 use App\Models\Post;
 use App\Models\Author;
 use App\Models\ReactPost;
@@ -23,6 +24,7 @@ class PostController extends Controller
      // Display All Posts in Homepage
     public function index()
     {
+     
 
         $varable = DB::table('authors')
             ->join('posts', 'authors.id', '=', 'posts.author_id')
@@ -40,14 +42,14 @@ class PostController extends Controller
         }
         else {
             $data = [];
-
+        
             foreach($varable as $image) {
                 $temp = [];
                 $temp['image'] = URL::to('').$image->image;
                 $temp['text'] = $image->text;
                 $temp['id'] = $image->id;
                 $temp['name'] = $image->name;
-                // $temp['commentCount'] = commentCount($image->id);
+                $temp['comment'] = $this->commentCount($image->id);
                 $data[] = $temp;
             }
 
