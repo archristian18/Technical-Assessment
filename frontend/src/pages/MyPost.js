@@ -105,7 +105,7 @@ function MyPost() {
 
                                   <ul>
                                     <ReactPost props={item.id}/>
-                                    <span role="img" aria-label="">👍</span>
+                                  
                                     <li>
                                     <i className="bi bi-chat-dots"/>
                                   
