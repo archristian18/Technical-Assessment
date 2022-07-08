@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 # Technical-Assessment
 
  layout
+=======
+ Change layout
+>>>>>>> b7f24bad2d9b3f996ba9e19ae89e575073557a6e
 * implement emojis / icons
 * continue with implementation of comments and react comments
 * implement formatting of post contents
