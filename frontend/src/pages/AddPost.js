@@ -94,9 +94,6 @@ function AddPost() {
                                     <div className="form-group mb-3">
                                         <button type="submit" className="btn btn-primary">Submit Post</button>
                                     </div>
-                           
-
-
                                 </form>
 
                             </div>

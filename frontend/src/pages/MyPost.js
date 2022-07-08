@@ -5,8 +5,6 @@ import swal from 'sweetalert';
 
 import Footer from './Footer';
 import Banner from './Banner';
-import Count from './Count';
-import ReactCountPost from './ReactCountPost';
 import ReactPost from './ReactPost';
 
 function MyPost() {
@@ -57,70 +55,6 @@ function MyPost() {
 }
 
     
-    var posts_HTMLTABLE = "";
-
-    posts_HTMLTABLE = posts.map( (item, index) => {
-        return (
-                 
-                        <div className="col-lg-6"  key={index.toString()}>
-                        {/* Start post list item */}
-                        <article className="d-flex flex-column">
-                            <div className="post-img">
-                            <img src={item.image} alt="" className="img-fluid" 
-                            style={{  backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}/> 
-                            </div>
-                            <h2 className="title">
-                            <a href="blog-details.html">{item.text}</a>
-                            </h2>
-                            <div className="meta-top">
-
-
-
-                            <ul>
-                          
-                            <ReactCountPost props={item.id}/>
-                            &nbsp;
-                            <li>
-                          
-                            <Count props={item.id}/>
-                            </li>  
-                            </ul>
-
-
-                              <ul>
-                                <ReactPost props={item.id}/>
-                                <li>
-                                <i className="bi bi-chat-dots"/>
-                              
-                                <Link className="nav-link" to={`/post/${item.id}`}>
-                                Comments</Link>
-                                </li>
-                                <li ><i className="bi bi-book" /> 
-                                <Link className="nav-link" to={`/edit/${item.id}`}>Edit</Link></li>
-                             
-
-                                <li ><i className="bi bi-trash" />
-                                <Link className="nav-link" to={`/post/${item.id}`} 
-                                onClick={(e) => deletePost(e, item.id)}>Delete</Link></li>
-                            
-                              </ul>
-
-
-                            </div>
-                            <div className="content">
-
-                            </div>
-
-                        </article>
-                        {/* End post list item */}
-                        </div>
-                   
-                  
-        );
-    });
-
-
-
       return (
         <div >
 
@@ -140,8 +74,65 @@ function MyPost() {
                   <div className="col-lg-12" >
                     <div className="row gy-5 posts-list">
 
-                     
-                    {posts_HTMLTABLE}  
+                    {Object.entries(posts).map(([key, item]) => (
+
+                      <div className="col-lg-6"  key={key}>
+                        {/* Start post list item */}
+                        <article className="d-flex flex-column blog-details">
+                            <div className="post-img">
+                            <img src={item.image} alt="" className="img-fluid" 
+                            style={{  backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}/> 
+                            </div>
+                            <h2 className="title">
+                            <a href="blog-details.html">{item.text}</a>
+                            </h2>
+                            <div className="meta-top">
+
+
+
+                            <ul>
+                            <li style={{ display:(item.comment <= 0)? 'none' : 'block'}}>
+                            <i className="bi bi-person" />
+                            {item.react}
+                            </li>
+                            &nbsp;
+                            <li style={{ display:(item.comment <= 0)? 'none' : 'block'}}>
+                            <i className="bi bi-chat-dots" />
+                            {item.comment}  
+                            </li>  
+                            </ul>
+
+
+                                  <ul>
+                                    <ReactPost props={item.id}/>
+                                    <span role="img" aria-label="">👍</span>
+                                    <li>
+                                    <i className="bi bi-chat-dots"/>
+                                  
+                                    <Link className="nav-link" to={`/post/${item.id}`}>
+                                    Comments</Link>
+                                    </li>
+                                    <li ><i className="bi bi-book" /> 
+                                    <Link className="nav-link" to={`/edit/${item.id}`}>Edit</Link></li>
+                                
+
+                                    <li ><i className="bi bi-trash" />
+                                    <Link className="nav-link" to={`/post/${item.id}`} 
+                                    onClick={(e) => deletePost(e, item.id)}>Delete</Link></li>
+                                
+                                  </ul>
+
+
+                            </div>
+                            <div className="content">
+
+                            </div>
+
+                        </article>
+                        {/* End post list item */}
+                        </div>
+                      ))}
+           
 
 
 

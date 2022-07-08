@@ -65,14 +65,16 @@ function ReactPost({props}) {
  
     return(
   
-        
+        <>
         <select name="react" id="details"  defaultValue={'DEFAULT'}  onChange={e => handleChange(e)} style={select}> 
         <option value="DEFAULT" id="0"  disabled hidden>{react}</option>
         <option value="👍" id="2" >👍</option>
         <option value="❤️" id="3">❤️</option>
         <option value="🙂" id="4">🙂</option> 
         </select>
-  
+        
+        {/* <span value="👍" id="2" role="img" aria-label="">👍</span> */}
+        </>
    
     );
 

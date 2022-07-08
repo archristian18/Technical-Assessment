@@ -8,7 +8,7 @@ function ReactComment({props}) {
     const [react, setReact] = useState();
     const author_id =  localStorage.getItem('id');
     const comment_id = props;
-    const [selected, setSelected] = useState("");
+
 
     const select = {
         border: '0px'  
@@ -37,8 +37,6 @@ function ReactComment({props}) {
          const handleChange = (e) => {
             e.preventDefault();
 
-            const selected = e.target.value;
-            setSelected(selected);
 
             const data = {
                 name:e.target.value,

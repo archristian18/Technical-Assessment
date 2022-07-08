@@ -8,15 +8,7 @@ import Footer from './Footer';
 import Banner from './Banner';
 import ReactComment from './ReactComment';
 
-import '../assets/img/favicon.png';
-import '../assets/img/apple-touch-icon.png';
-import '../assets/vendor/bootstrap/css/bootstrap.min.css';
-import '../assets/vendor/bootstrap-icons/bootstrap-icons.css';
-import '../assets/vendor/aos/aos.css';
-import '../assets/vendor/glightbox/css/glightbox.min.css';
-import '../assets/vendor/swiper/swiper-bundle.min.css';
-import '../assets/vendor/remixicon/remixicon.css';
-import '../assets/css/main.css';
+
 
 
 
@@ -196,10 +188,6 @@ function Post(props) {
             </div>{/* End meta top */}
             <div className="content">
 
-              {/* <p>
-                Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta. Est cum et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis dolore.
-              </p> */}
 
             </div>{/* End post content */}
             {/* End blog post */}
@@ -210,12 +198,9 @@ function Post(props) {
               <div className="comments">
                 <h4 className="comments-count">Comments</h4>
 
-          
-
                 {Object.entries(comments).map(([key, item]) => (
                   <article id="comment-1" className="comment"  key={key}>
                             <div className="d-flex blog-details" style={{padding:'15px'}}>
-
 
                             <p onClick={(e) => deletePost(e, item.id)} className="nav-link"  
                             style={{  width: '2%', fontSize:'10px', display:(author_id == item.author_id)? 'block' : 'none'}} >

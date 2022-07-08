@@ -3,15 +3,7 @@ import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 
-import '../assets/img/favicon.png';
-import '../assets/img/apple-touch-icon.png';
-import '../assets/vendor/bootstrap/css/bootstrap.min.css';
-import '../assets/vendor/bootstrap-icons/bootstrap-icons.css';
-import '../assets/vendor/aos/aos.css';
-import '../assets/vendor/glightbox/css/glightbox.min.css';
-import '../assets/vendor/swiper/swiper-bundle.min.css';
-import '../assets/vendor/remixicon/remixicon.css';
-import '../assets/css/main.css';
+
 
 
 function EditPost(props) {
@@ -26,7 +18,6 @@ function EditPost(props) {
          error_list: [],
      });
  
-     const editorState = useState('');
 
      const [imagedata, setImagedata] = useState('');
 
@@ -57,9 +48,6 @@ function EditPost(props) {
         setPost({...postInput, [e.target.name]: e.target.value })
      
     }
-
- 
-
 
 
   // Create const to get the event form data and link to backend

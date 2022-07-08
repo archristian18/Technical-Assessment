@@ -2,9 +2,9 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import {Link, useHistory} from 'react-router-dom';
 
-import Banner from './Banner';
-import Footer from './Footer';
-import ReactPost from './ReactPost';
+import Banner from '../Banner';
+import Footer from '../Footer';
+import ReactPost from '../ReactPost';
 import Count from './Count';
 import ReactCountPost from './ReactCountPost';
 
@@ -43,9 +43,6 @@ function Homepage() {
 
 
 
-
-
-
       return (
         <div >
 
@@ -54,8 +51,6 @@ function Homepage() {
 
           
           <main id="main">
-
-     
 
 
             {/* ======= Blog Section ======= */}
@@ -66,10 +61,7 @@ function Homepage() {
                   <div className="col-lg-12" >
                     <div className="row gy-5 posts-list">
 
-                     
-       
-
-                    
+                          
                     {Object.entries(posts).map(([key, item]) => (
                       <div className="col-lg-6"   key={key}>
                         {/* Start post list item */}

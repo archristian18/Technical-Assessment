@@ -5,25 +5,17 @@ import {Link, useHistory} from 'react-router-dom';
 import Banner from './Banner';
 import Footer from './Footer';
 import ReactPost from './ReactPost';
-import Count from './Count';
-import ReactCountPost from './ReactCountPost';
 
 
-import '../assets/img/favicon.png';
-import '../assets/img/apple-touch-icon.png';
-import '../assets/vendor/bootstrap/css/bootstrap.min.css';
-import '../assets/vendor/bootstrap-icons/bootstrap-icons.css';
-import '../assets/vendor/aos/aos.css';
-import '../assets/vendor/glightbox/css/glightbox.min.css';
-import '../assets/vendor/swiper/swiper-bundle.min.css';
-import '../assets/vendor/remixicon/remixicon.css';
-import '../assets/css/main.css';
+
 
 function Homepage() {
 
     const history = useHistory();
     const [posts, setPost] = useState([]);
     
+
+
     // Getting the value database backend
     useEffect(() => {
     
@@ -41,9 +33,6 @@ function Homepage() {
 
     
     }, []);
-
-
-
 
       return (
         <div >
@@ -77,16 +66,19 @@ function Homepage() {
                             </h2>
                             <div className="meta-top">
 
-                          <ul>
+                              <ul>
+                                <li style={{ display:(item.react <= 0)? 'none' : 'block'}}>
+                                <i className="bi bi-person" />
+                                {item.react}
+                                </li>
+                          
+                                &nbsp;
+                                <li style={{ display:(item.comment <= 0)? 'none' : 'block'}}>
+                                <i className="bi bi-chat-dots" />
+                                {item.comment}  
 
-                            <ReactCountPost props={item.id}/>
-                            &nbsp;
-                            <li>
-                            
-                            <Count props={item.id}/>
-
-                            </li>  
-                          </ul>
+                                </li>  
+                              </ul>
 
 
                                 <ul>
@@ -94,6 +86,7 @@ function Homepage() {
                                   <li> &nbsp;<i className="bi bi-person" /> <a href="blog-details.html">{item.name}</a></li>
                                   <li>
                                   <i className="bi bi-chat-dots"/>
+                                  
                                   <Link className="nav-link" to={`/post/${item.id}`}>
                                   Comments</Link>
                                   </li>
