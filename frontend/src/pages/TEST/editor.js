@@ -40,3 +40,6 @@ return (
 
 
 export default App;
+
+
+// npm install --save tinymce @tinymce-react
