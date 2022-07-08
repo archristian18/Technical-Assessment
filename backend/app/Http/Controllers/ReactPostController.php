@@ -17,6 +17,8 @@ class ReactPostController extends Controller
 
         $validator = Validator::make($request->all(),[
             'name'=>'required',
+            'post_id'=>'required',
+            'author_id'=>'required',
 
         ]);
 
@@ -36,10 +38,9 @@ class ReactPostController extends Controller
             ->first();
     
         
-            if($check === NULL){
+            if($check == NULL){
 
             ReactPost::create([
-
                 'name' => $request->name,
                 'post_id' => $request->post_id,
                 'author_id' =>  $request->author_id,
@@ -48,7 +49,7 @@ class ReactPostController extends Controller
             
             return response()->json([
                 'status'=> 200,
-                'message'=>'Added Successfully',
+                'message'=>'Create React Added Successfully',
 
             ]);
 

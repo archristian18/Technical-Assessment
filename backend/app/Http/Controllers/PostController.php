@@ -50,10 +50,12 @@ class PostController extends Controller
                 $temp['id'] = $image->id;
                 $temp['name'] = $image->name;
                 $temp['comment'] = $this->commentCount($image->id);
+                $temp['react'] = $this->reactCount($image->id);
+                $temp['reactName'] = $this->reactName($image->id, $image->author_id);
                 $data[] = $temp;
-            }
+            }   
 
-
+            
             return response()->json([
                 'status'=> 200,
                 'posts'=>$data,
@@ -73,6 +75,40 @@ class PostController extends Controller
         return $users;
     }
 
+    //count all reacts
+    public function reactCount($id){
+
+        // $comment = Comment::all();
+        $users = DB::table('react_posts')
+        ->where('post_id', $id)
+        ->count();
+        
+        if($users === NULL){
+            return "";
+            }
+
+        else{
+        return $users;
+            }
+    }
+
+    //get reacts emoji
+    public function reactName($id, $author){
+
+        // $comment = Comment::all();
+        $users = DB::table('react_posts')
+        ->where('post_id', $id)
+        ->where('author_id', $author)
+        ->get();
+
+        $temp = '';
+
+        foreach($users as $image) {
+          
+            $temp = $image->name;
+        }   
+        return $temp;
+     }
 
 
     // Display authors/users post,  Mypost page
@@ -84,8 +120,6 @@ class PostController extends Controller
             ->where('authors.id', $id)
             ->select()
             ->get();
-
-
 
 
         if($varable === NULL){
@@ -103,6 +137,8 @@ class PostController extends Controller
                 $temp['text'] = $image->text;
                 $temp['id'] = $image->id;
                 $temp['name'] = $image->name;
+                $temp['comment'] = $this->commentCount($image->id);
+                $temp['react'] = $this->reactCount($image->id);
                 $data[] = $temp;
             }
             return response()->json([
@@ -134,8 +170,15 @@ class PostController extends Controller
 
         ]);
 
-        if(!$validator)
+        if($validator->fails())
         {
+            return response()->json([
+                'status'=> 422,
+                'validate_err'=> $validator->messages(),
+            ]);
+        }
+        else
+        {         
             // Store the Image inside lavaravel storage
             $requestData = [];
             $fileName = time().$request->file('image')->getClientOriginalName();
@@ -156,15 +199,7 @@ class PostController extends Controller
             'message'=>'Added Successfully',
         ]);
         }
-        else
-        {
 
-            return response()->json([
-                'status'=> 422,
-                'validate_err'=> $validator->messages(),
-            ]);
-
-        }
 
     }
     

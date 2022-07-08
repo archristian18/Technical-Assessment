@@ -184,6 +184,9 @@ class CommentController extends Controller
                     $temp['text'] = $image->text;
                     $temp['id'] = $image->id;
                     $temp['name'] = $image->name;
+                    $temp['comment'] = $this->commentCount($image->id);
+                    $temp['react'] = $this->reactCount($image->id);
+                    $temp['reactName'] = $this->reactName($image->id, $image->author_id);
                     $data[] = $temp;
                 }
                  return response()->json([
@@ -195,5 +198,54 @@ class CommentController extends Controller
 
 
          }
+            
+    //count all comment
+    public function commentCount($id) {
+        //query return count or size of comment
+
+        $users = DB::table('comments')
+        ->where('post_id', $id)
+        ->count();
+
+        return $users;
+    }
+
+    //count all reacts
+    public function reactCount($id){
+
+        // $comment = Comment::all();
+        $users = DB::table('react_posts')
+        ->where('post_id', $id)
+        ->count();
+        
+        if($users === NULL){
+            return "";
+            }
+
+        else{
+        return $users;
+            }
+    }
+
+    //get reacts emoji
+    public function reactName($id, $author){
+
+        // $comment = Comment::all();
+        $users = DB::table('react_posts')
+        ->where('post_id', $id)
+        ->where('author_id', $author)
+        ->get();
+
+        $temp = '';
+
+        foreach($users as $image) {
+          
+            $temp = $image->name;
+        }   
+        return $temp;
+     }
+
+
+
 
 }
