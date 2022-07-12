@@ -48,7 +48,7 @@ class AuthorController extends Controller
     }
 
     // Login Authors
-    public function loginAuth(Request $request)
+    public function loginAuth(Request $request) 
     {
 
       
@@ -107,8 +107,8 @@ class AuthorController extends Controller
 
         }
     }
-
-    public function logout(Request $request){
+    
+    public function logout(Request $request){ 
         
         // Remove tokens
         if($request){

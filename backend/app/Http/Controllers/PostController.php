@@ -22,13 +22,12 @@ class PostController extends Controller
 
 
      // Display All Posts in Homepage
-    public function index()
+    public function index($Author_id) 
     {
      
-
         $varable = DB::table('authors')
             ->join('posts', 'authors.id', '=', 'posts.author_id')
-            ->select()
+            ->select('authors.*', 'posts.*', 'authors.id as author_id')
             ->get();
 
         $comments = Post::withCount('comment')->get();
@@ -38,9 +37,10 @@ class PostController extends Controller
             'status'=> 401,
             'message'=>'Not Authentication',
       
-        ]);
+        ]); 
         }
         else {
+            
             $data = [];
         
             foreach($varable as $image) {
@@ -49,9 +49,10 @@ class PostController extends Controller
                 $temp['text'] = $image->text;
                 $temp['id'] = $image->id;
                 $temp['name'] = $image->name;
+                $temp['Auth'] = $image->author_id;
                 $temp['comment'] = $this->commentCount($image->id);
                 $temp['react'] = $this->reactCount($image->id);
-                $temp['reactName'] = $this->reactName($image->id, $image->author_id);
+                $temp['reactName'] = $this->reactName($image->id, $Author_id);
                 $data[] = $temp;
             }   
 
@@ -95,32 +96,33 @@ class PostController extends Controller
     //get reacts emoji
     public function reactName($id, $author){
 
-        // $comment = Comment::all();
         $users = DB::table('react_posts')
         ->where('post_id', $id)
         ->where('author_id', $author)
         ->get();
 
-        $temp = '';
-
+     
+        $data = "" ;
         foreach($users as $image) {
-          
+            $temp = [];
             $temp = $image->name;
+            $data = $temp;
         }   
-        return $temp;
-     }
+        return $data;
+
+    }
 
 
     // Display authors/users post,  Mypost page
-    public function mypost($id)
+    public function mypost($Author_id) 
     {
        
         $varable = DB::table('authors')
             ->join('posts', 'authors.id', '=', 'posts.author_id')
-            ->where('authors.id', $id)
-            ->select()
+            ->where('authors.id', $Author_id)
             ->get();
 
+        
 
         if($varable === NULL){
         return response()->json([
@@ -139,6 +141,7 @@ class PostController extends Controller
                 $temp['name'] = $image->name;
                 $temp['comment'] = $this->commentCount($image->id);
                 $temp['react'] = $this->reactCount($image->id);
+                $temp['reactName'] = $this->reactName($image->id, $Author_id);
                 $data[] = $temp;
             }
             return response()->json([
@@ -150,6 +153,8 @@ class PostController extends Controller
  
     }
 
+    
+
 
     /**
      * Store a newly created resource in storage.
@@ -158,9 +163,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
+  
     // Authors Added Post
-    public function store(Request $request)
+    public function store(Request $request) 
     {
        
 
@@ -212,7 +217,7 @@ class PostController extends Controller
      */
 
      // Validated if post exist
-    public function edit($id)
+    public function edit($id) 
     {
         $edit = Post::find($id);
 
@@ -242,7 +247,7 @@ class PostController extends Controller
 
 
      // For edit the authors post
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) 
     {
 
         $data = Post::find($id);

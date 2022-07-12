@@ -11,7 +11,7 @@ import MyPost from './pages/MyPost';
 
 import Post from './pages/Post';
 import Homepage from './pages/Homepage';
-
+import editor from './pages/editor';
 
 import axios from 'axios';
 
@@ -34,7 +34,9 @@ function App() {
 
           <Switch>
             <Route path="/home" component={Homepage} />
+            <Route path="/edit" component={editor} />
             {/* comment POST */}
+ 
             <Route path="/post/:id" component={Post} /> 
             {/* My post  */}
             <Route path="/mypost" component={MyPost} />

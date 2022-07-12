@@ -12,7 +12,7 @@ class ReactCommentController extends Controller
 {
 
     // Added Reaction in Comment post
-    public function store(Request $request)
+    public function store(Request $request) 
     {
 
         $validator = Validator::make($request->all(),[
@@ -65,37 +65,5 @@ class ReactCommentController extends Controller
     }
 
 
-    // React Comment Display
-    public function index(Request $request)
-    {
-
-
-        $check = DB::table('react_comments')
-        ->where('author_id',$request->author_id)
-        ->where('comment_id',$request->comment_id)
-        ->first();
-
-        
-        if($check === NULL){
-            
-            return response()->json([
-                'status'=> 404,
-                'message'=>'Fail Successfully',
-            ]);
-
-        }
-
-        else{
-                return response()->json([
-                    'status'=> 200,
-                    'message'=>'Added Successfully',
-                    'check'=> $check->name
-                    
-                    
-                ]);
-                
-        }
-
     
-    }
 }

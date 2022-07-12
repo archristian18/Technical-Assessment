@@ -1,25 +1,27 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import {Link, useHistory} from 'react-router-dom';
+import swal from 'sweetalert';
 
 import Banner from './Banner';
 import Footer from './Footer';
-import ReactPost from './ReactPost';
-
-
 
 
 function Homepage() {
 
     const history = useHistory();
     const [posts, setPost] = useState([]);
+    const author_id =  localStorage.getItem('id');
     
-
+    //Style selection
+      const select = {
+        border: '0px'  
+      }
 
     // Getting the value database backend
     useEffect(() => {
-    
-        axios.get(`api/author/posts`).then(res=>{
+
+        axios.post(`api/author/posts${author_id}`).then(res=>{
             if(res.status === 200)
             {
                 setPost(res.data.posts);
@@ -33,6 +35,38 @@ function Homepage() {
 
     
     }, []);
+
+    const handleChange = (e,id) => {
+      e.preventDefault();
+    
+
+      const data = {
+          name:e.target.value,
+          post_id:id,
+          author_id:author_id,
+      }
+  
+      axios.post(`/api/react/post`,  data).then(res=>{
+          if(res.data.status === 200)
+          {
+              swal("Success!",res.data.message,"success");
+              // window.location.reload();   
+          }
+          else if(res.data.status === 404)
+          {
+              swal("Error",res.data.message,"error");
+              // history.push('/mypost');
+          }
+          else{
+            swal("Fail!",res.data.message,"Fail");
+          }
+      });
+
+  }
+
+
+
+
 
       return (
         <div >
@@ -82,7 +116,14 @@ function Homepage() {
 
 
                                 <ul>
-                                  <ReactPost props={item.id}/>
+                               
+                                <select name="react"  defaultValue={'DEFAULT'}  onChange={e => handleChange(e, item.id)} style={select}> 
+                                <option value="DEFAULT"   disabled hidden> {item.reactName}  </option>
+                                <option value="👍" id="2" >👍</option>
+                                <option value="❤️" id="3">❤️</option>
+                                <option value="🙂" id="4">🙂</option> 
+                                </select>
+
                                   <li> &nbsp;<i className="bi bi-person" /> <a href="blog-details.html">{item.name}</a></li>
                                   <li>
                                   <i className="bi bi-chat-dots"/>

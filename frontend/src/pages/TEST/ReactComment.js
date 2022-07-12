@@ -68,7 +68,7 @@ function ReactComment({props}) {
         <option value="❤️" id="3">❤️</option>
         <option value="🙂" id="4">🙂</option> 
                                          
-            </select>
+        </select>
    
     );
 

@@ -14,7 +14,7 @@ class CommentController extends Controller
 {
         
     // Added Comment in Post
-    public function comment(Request $request)
+    public function comment(Request $request) 
     {   
     
         
@@ -48,19 +48,26 @@ class CommentController extends Controller
     }
 
     // Display Comment in specific Post
-    public function index(Request $request)
+    public function index(Request $request) 
     {   
 
+  
+
+                // get comments
                 $varable = DB::table('authors')
                 ->join('comments', 'authors.id', '=', 'comments.author_id')
                 ->where('post_id', $request->post_id)
-                ->select()
+                ->select('authors.*', 'comments.*','comments.id as comment_id', 'authors.id as author_id')
                 ->get();
-        
-
+     
+                $post = Post::find($request->post_id);
+               
+                // return $post;
+                // die();
+            
         if($varable === null)
         {
-            $varable = Post::find($id);
+            $varable = Post::find($request->post_id);
             return response()->json([
                 'status'=> 404,
                 'message' => 'No Post ID Found',
@@ -71,21 +78,41 @@ class CommentController extends Controller
         }
         else
         {     
-                   
+
+
+
+            $data = [];
+            foreach($varable as $image) {
+                $temp = []; 
+               
+                if($post->author_id == $request->author_id){
+                    $temp['author_id'] = $request->author_id;
+                }
+                else{
+                    $temp['author_id'] = $image->author_id;
+                }
+             
+                $temp['id'] = $image->comment_id;
+                $temp['name'] = $image->name;
+                $temp['text'] = $image->text;
+                $temp['reactName'] = $this->reactName($image->comment_id, $request->author_id);
+                $data[] = $temp;
+            }
+
             return response()->json([
                 'status'=> 200,
                 'message'=>'Post Comment Successfully',
-                'comment'=>$varable,
+                'comment'=>$data,
+
             ]);
-
-
-
-
 
             
         }
 
     }
+
+
+
 
          // Delete authors post
     public function destroy(Request $request)
@@ -155,7 +182,7 @@ class CommentController extends Controller
          }
 
          // Display specific post inside comment page
-         public function posts($id)
+         public function posts($id) 
          {
             
 
@@ -227,24 +254,26 @@ class CommentController extends Controller
             }
     }
 
-    //get reacts emoji
-    public function reactName($id, $author){
 
-        // $comment = Comment::all();
-        $users = DB::table('react_posts')
-        ->where('post_id', $id)
-        ->where('author_id', $author)
-        ->get();
 
-        $temp = '';
+        //get reacts emoji
+        public function reactName($id, $author){
 
-        foreach($users as $image) {
-          
-            $temp = $image->name;
-        }   
-        return $temp;
-     }
-
+            $users = DB::table('react_comments')
+            ->where('comment_id', $id)
+            ->where('author_id', $author)
+            ->get();
+    
+         
+            $data = "" ;
+            foreach($users as $image) {
+                $temp = [];
+                $temp = $image->name;
+                $data = $temp;
+            }   
+            return $data;
+    
+        }
 
 
 

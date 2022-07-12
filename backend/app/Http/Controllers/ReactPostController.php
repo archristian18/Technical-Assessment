@@ -66,7 +66,7 @@ class ReactPostController extends Controller
                 return response()->json([
                     'status'=> 200,
                     'message'=>'Added Successfully',
-                    'react' => $check->name
+
                 ]);
 
             }
@@ -75,35 +75,7 @@ class ReactPostController extends Controller
 
     }
 
-    // React Post Display
-    public function index(Request $request)
-    {
-        
-        $check = DB::table('react_posts')
-        ->where('author_id',$request->author_id)
-        ->where('post_id',$request->post_id)
-        ->first();
 
-        if($check === NULL){
-
-            return response()->json([
-                'status'=> 404,
-                'message'=>'Fail Successfully',
-            ]);
-
-            }
-            else{
-                return response()->json([
-                    'status'=> 200,
-                    'message'=>'Added Successfully',
-                    'check'=> $check->name
-                ]);
-                
-            }
-
-
-
-    }
 
     
 

@@ -40,7 +40,6 @@ function ReactPost({props}) {
     const handleChange = (e) => {
         e.preventDefault();
       
- 
 
         const data = {
             name:e.target.value,
@@ -66,6 +65,7 @@ function ReactPost({props}) {
     return(
   
         <>
+        
         <select name="react" id="details"  defaultValue={'DEFAULT'}  onChange={e => handleChange(e)} style={select}> 
         <option value="DEFAULT" id="0"  disabled hidden>{react}</option>
         <option value="👍" id="2" >👍</option>

@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import Footer from './Footer';
 import Banner from './Banner';
-import ReactComment from './ReactComment';
+
 
 
 
@@ -14,9 +14,17 @@ import ReactComment from './ReactComment';
 
 function Post(props) {
 
+      //style selection
+      const select = {
+        border: '0px'  
+      }
+
      //Show button when input text have value
      const [show, setShow] = useState(true);
              
+    //Show button when input text have value
+     const [hide, setHide] = useState(true);
+
     //Value Id for post
     const post_id = props.match.params.id;
     //Directory
@@ -147,6 +155,31 @@ function Post(props) {
         });
     }
 
+         // const delete, Created to delete the specific id
+         const handleChange = (e, id) => {
+          e.preventDefault();
+
+
+          const data = {
+              name:e.target.value,
+              comment_id:id,
+              author_id:author_id,
+          }
+  
+          axios.post(`/api/react/comment`,  data).then(res=>{
+              if(res.data.status === 200)
+              {
+                  swal("Success!",res.data.message,"success");
+                
+              }
+              else if(res.data.status === 404)
+              {
+                  swal("Error",res.data.message,"error");
+                
+              }
+          });
+      }    
+
 
     
 
@@ -178,7 +211,7 @@ function Post(props) {
 
             }}>      
 
-              <img  src={item.image} alt="" className="img-fluid " style={{ display: 'block',     marginRight: 'auto',  width: '100%', height: '500px' }} />
+              <img  src={item.image} alt="" className="img-fluid " style={{ display: 'block',  marginRight: 'auto',  width: '100%', height: '500px' }} />
             </div>
             <h2 className="title">{item.text}</h2>
             <div className="meta-top">
@@ -202,20 +235,32 @@ function Post(props) {
                   <article id="comment-1" className="comment"  key={key}>
                             <div className="d-flex blog-details" style={{padding:'15px'}}>
 
+                    
                             <p onClick={(e) => deletePost(e, item.id)} className="nav-link"  
-                            style={{  width: '2%', fontSize:'10px', display:(author_id == item.author_id)? 'block' : 'none'}} >
-                            X 
+                            style={{  width: '2%', fontSize:'10px', display:(author_id == item.author_id)? 'block' : 'none' }} >
+                           X
                             </p>
 
                             <div>
                                 <h5>{item.name}</h5>
                                 {item.text}
                             </div>
-                
                        
                             </div><div style={{padding:'7px'}}>
                             Like 
-                            &nbsp; <ReactComment props={item.id}/></div>
+                            &nbsp;
+
+                            <select name="react" id="details"   defaultValue={'DEFAULT'} onChange={e => handleChange(e, item.id)} style={select}> 
+                            <option value="DEFAULT" id="0"  disabled hidden>{item.reactName}</option>
+                            <option value="👍" id="2" >👍</option>
+                            <option value="❤️" id="3">❤️</option>
+                            <option value="🙂" id="4">🙂</option>                            
+                            </select>
+
+             
+                            
+                            
+                            </div>
                             {/* End comment #1 */}
                   </article>
               ))}

@@ -5,19 +5,25 @@ import swal from 'sweetalert';
 
 import Footer from './Footer';
 import Banner from './Banner';
-import ReactPost from './ReactPost';
+
 
 function MyPost() {
 
   const history = useHistory();
-  const id =  localStorage.getItem('id');
+  const author_id =  localStorage.getItem('id');
+
+      
+  const select = {
+    border: '0px'  
+  }
+
 
   const [posts, setPost] = useState([]); 
 
     // Getting the value database backend
     useEffect(() => {
     
-        axios.post(`api/mypost${id}`).then(res=>{
+        axios.post(`api/mypost${author_id}`).then(res=>{
             if(res.status === 200)
             {
                 setPost(res.data.posts);
@@ -52,6 +58,31 @@ function MyPost() {
           history.push('/mypost');
       }
   });
+}
+
+const handleChange = (e, id) => {
+  e.preventDefault();
+
+
+  const data = {
+      name:e.target.value,
+      post_id:id,
+      author_id:author_id,
+  }
+
+  axios.post(`/api/react/post`,  data).then(res=>{
+      if(res.data.status === 200)
+      {
+          swal("Success!",res.data.message,"success");
+          // window.location.reload();   
+      }
+      else if(res.data.status === 404)
+      {
+          swal("Error",res.data.message,"error");
+          history.push('/mypost');
+      }
+  });
+
 }
 
     
@@ -91,7 +122,7 @@ function MyPost() {
 
 
                             <ul>
-                            <li style={{ display:(item.comment <= 0)? 'none' : 'block'}}>
+                            <li style={{ display:(item.react <= 0)? 'none' : 'block'}}>
                             <i className="bi bi-person" />
                             {item.react}
                             </li>
@@ -104,8 +135,14 @@ function MyPost() {
 
 
                                   <ul>
-                                    <ReactPost props={item.id}/>
-                                  
+                                    {/* <ReactPost props={item.id}/> */}
+                                    <select name="react"  defaultValue={'DEFAULT'}  onChange={e => handleChange(e, item.id)} style={select}> 
+                                    <option value="DEFAULT"   disabled hidden> {item.reactName}  </option>
+                                    <option value="👍" id="2" >👍</option>
+                                    <option value="❤️" id="3">❤️</option>
+                                    <option value="🙂" id="4">🙂</option> 
+                                    </select>
+
                                     <li>
                                     <i className="bi bi-chat-dots"/>
                                   

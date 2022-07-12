@@ -1,8 +1,8 @@
-import {useRef} from 'react';
+import React, {useRef} from 'react';
 import {Editor} from '@tinymce/tinymce-react';
 
 
-function App(){
+function editor(){
 
     const editorRef = useRef();
 
@@ -15,9 +15,9 @@ return (
 
         <div>
             <Editor 
-
+            apiKey = "dtwymj5xk7omrpqaur8d7hcncroyet743vbi5t6klspj7a7n"
             onInit={(evt, editor) => editorRef.current = editor }
-            initValue="<p>Default Text</p>"
+            initialValue="<p>Default Text</p>"
             init={{
                 menubar:false,
             }}
@@ -28,18 +28,15 @@ return (
             onClick={onClickHandler}
             >
 
-
             </button>
         </div>
-
-   
 
 );
 
 }
 
 
-export default App;
+export default editor;
 
 
 // npm install --save tinymce @tinymce-react
