@@ -34,7 +34,7 @@ function App() {
 
           <Switch>
             <Route path="/home" component={Homepage} />
-            <Route path="/edit" component={editor} />
+            <Route path="/edit/:id" component={editor} />
             {/* comment POST */}
  
             <Route path="/post/:id" component={Post} /> 
@@ -45,7 +45,7 @@ function App() {
             <Route path="/register" component={Register} />
             <Route path="/author/login" component={Login} />
 
-            <Route path="/edit/:id" component={EditPost} />
+            {/* <Route path="/edit/:id" component={EditPost} /> */}
 
         
 

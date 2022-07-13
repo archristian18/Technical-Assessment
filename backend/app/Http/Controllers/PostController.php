@@ -252,7 +252,9 @@ class PostController extends Controller
 
         $data = Post::find($id);
         $input = $request->all(); 
+        // $input = json_decode($request->all());
 
+        
 
         if($data === NULL){
             return response()->json([
@@ -262,6 +264,7 @@ class PostController extends Controller
         }
 
         else {
+            
                 if($image = $request->file('image')){
                     $file_old =  public_path().$data->image;
                     unlink($file_old);
@@ -280,7 +283,10 @@ class PostController extends Controller
                 return response()->json([
                     'status'=> 200,
                     'message'=>'Updated Successfully',
+
                 ]);
+
+             
                     
         }
 
