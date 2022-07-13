@@ -62,8 +62,7 @@ class CommentController extends Controller
      
                 $post = Post::find($request->post_id);
                
-                // return $post;
-                // die();
+           
             
         if($varable === null)
         {
@@ -86,6 +85,9 @@ class CommentController extends Controller
                 $temp = []; 
                
                 if($post->author_id == $request->author_id){
+                    $temp['author_id'] = $request->author_id;
+                }
+                else if($image->author_id == $request->author_id){
                     $temp['author_id'] = $request->author_id;
                 }
                 else{

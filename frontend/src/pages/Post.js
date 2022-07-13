@@ -22,8 +22,7 @@ function Post(props) {
      //Show button when input text have value
      const [show, setShow] = useState(true);
              
-    //Show button when input text have value
-     const [hide, setHide] = useState(true);
+
 
     //Value Id for post
     const post_id = props.match.params.id;
@@ -231,13 +230,16 @@ function Post(props) {
               <div className="comments">
                 <h4 className="comments-count">Comments</h4>
 
-                {Object.entries(comments).map(([key, item]) => (
+                {Object.entries(comments).map(([key, item]) => 
+           
+        
+                (
                   <article id="comment-1" className="comment"  key={key}>
                             <div className="d-flex blog-details" style={{padding:'15px'}}>
 
                     
                             <p onClick={(e) => deletePost(e, item.id)} className="nav-link"  
-                            style={{  width: '2%', fontSize:'10px', display:(author_id == item.author_id)? 'block' : 'none' }} >
+                            style={{  width: '2%', fontSize:'10px', display:(author_id === item.author_id)? 'block' : 'none' }} >
                            X
                             </p>
 

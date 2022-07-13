@@ -6,12 +6,11 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import AddPost from './pages/AddPost';
 
-import EditPost from './pages/EditPost';
 import MyPost from './pages/MyPost';
 
 import Post from './pages/Post';
 import Homepage from './pages/Homepage';
-import editor from './pages/editor';
+import EditPost from './pages/EditPost';
 
 import axios from 'axios';
 
@@ -34,7 +33,7 @@ function App() {
 
           <Switch>
             <Route path="/home" component={Homepage} />
-            <Route path="/edit/:id" component={editor} />
+            <Route path="/edit/:id" component={EditPost} />
             {/* comment POST */}
  
             <Route path="/post/:id" component={Post} /> 
@@ -45,7 +44,6 @@ function App() {
             <Route path="/register" component={Register} />
             <Route path="/author/login" component={Login} />
 
-            {/* <Route path="/edit/:id" component={EditPost} /> */}
 
         
 
