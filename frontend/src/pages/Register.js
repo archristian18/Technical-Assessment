@@ -78,7 +78,7 @@ function Register() {
                                     </div>                                    
                                     <div className="form-group mb-3 ">
                                         <button type="submit" className="btn btn-primary ml">Register</button>
-                                       
+                                        &nbsp;&nbsp;
                                         <Link to={'/author/login'} className="btn btn-danger "> Cancel</Link>
                                     </div>
                                 </form>

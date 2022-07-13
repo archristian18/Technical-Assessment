@@ -97,7 +97,7 @@ function Login() {
                                     </div>                                    
                                     <div className="form-group mb-3 ">
                                         <button type="submit" className="btn btn-primary ml">Login</button>
-                                       
+                                        &nbsp;&nbsp;
                                         <Link to={'/register'} className="btn btn-success"> Register</Link>
                                     </div>
                                 </form>

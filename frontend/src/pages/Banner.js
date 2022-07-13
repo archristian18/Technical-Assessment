@@ -32,15 +32,14 @@ function Banner() {
             style={{backgroundImage: 'url("../../assets/img/blog-header.jpg")',  
             position: 'relative'}} >
            
-           <header id="header" className="header d-flex align-items-center" style={{padding: '10px',}}>
-            <div className="container-fluid container-xl d-flex align-items-center justify-content-between"   style={{position: 'absolute', top: '0', right: '15%',  marginTop: '20'}}>
+           <header id="header" className="header d-flex align-items-center" style={{padding: '10px', }}>
+            <div className="container-fluid container-xl d-flex align-items-center justify-content-between"   style={{position: 'absolute', top: '0', right: '15%',  marginTop: '35px', }}>
               <a href="/home" className="logo d-flex align-items-center">
                 {/* Uncomment the line below if you also wish to use an image logo */}
                 {/* <img src="assets/img/logo.png" alt=""> */}
                 <h1 className="d-flex align-items-center">{username}</h1>
               </a>
-              <i className="mobile-nav-toggle mobile-nav-show bi bi-list" />
-              <i className="mobile-nav-toggle mobile-nav-hide d-none bi bi-x" />
+
               
               <nav id="navbar" className="navbar">
                 <ul>
