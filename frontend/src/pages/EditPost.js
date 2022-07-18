@@ -79,7 +79,7 @@ return (
         onInit={(evt, editor) => editorRef.current = editor}
         initialValue={postInput.text}
         init={{
-          height: 500,
+          height: 300,
           menubar: false,
           plugins: ['image', 'image paste',
             'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
@@ -87,12 +87,15 @@ return (
             'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
             
           ],
-          // tinydrive_token_provider: 'a409b76cf33397792b334b87c5b841853c86e312a01d9089a9050c7fafb7a06e',
+          tinydrive_token_provider: 'a409b76cf33397792b334b87c5b841853c86e312a01d9089a9050c7fafb7a06e',
 
-          toolbar:'undo redo | blocks | ' +
-            'bold italic forecolor | alignleft aligncenter ' +
-            'alignright alignjustify | bullist numlist outdent indent | ' +
-            'image',
+          // toolbar:'undo redo | blocks | ' +
+          //   'bold italic forecolor | alignleft aligncenter ' +
+          //   'alignright alignjustify | bullist numlist outdent indent | ' +
+          //   'image',
+          toolbar: 'image',
+
+
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
