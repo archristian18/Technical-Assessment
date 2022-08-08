@@ -195,7 +195,6 @@ function Post(props) {
           <div className="row g-5">
             <div className="col-lg-10" style={{marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto'}}>
 
-
             {/* POST IMAGE AND TEXT */}
             {Object.entries(posts).map(([key, item]) => (
               <article className="blog-details" key={key}>
@@ -211,7 +210,7 @@ function Post(props) {
             <h2 className="title">{item.text}</h2>
             <div className="meta-top">
               <ul>
-                <li className="d-flex align-items-center"><i className="bi bi-person" /> <a href="blog-details.html">{item.name}</a></li>
+                <li className="d-flex align-items-center"><i className="bi bi-person" />{item.name}</li>
               </ul>
             </div>{/* End meta top */}
             <div className="content">

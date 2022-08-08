@@ -108,12 +108,9 @@ const handleChange = (e, id) => {
                             style={{  backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}/> 
                             </div>
                             <h2 className="title">
-                            <a href="blog-details.html">{item.text}</a>
+                            {item.text}
                             </h2>
                             <div className="meta-top">
-
-
-
                             <ul>
                             <li style={{ display:(item.react <= 0)? 'none' : 'block'}}>
                             <i className="bi bi-person" />

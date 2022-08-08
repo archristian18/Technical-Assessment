@@ -88,7 +88,7 @@ function Homepage() {
                             <img src={item.image} alt="" className="img-fluid" style={{ width: '100%', height: '100%'}} /> 
                             </div>
                             <h2 className="title">
-                            <a href="blog-details.html">{item.text}</a>
+                            {item.text}
                             </h2>
                             <div className="meta-top">
 
@@ -118,7 +118,7 @@ function Homepage() {
                                     <span role="img" aria-label="smile">🙂</span> 
                                 </option>
                                 </select>
-                                  <li> &nbsp;<i className="bi bi-person" /> <a href="blog-details.html">{item.name}</a></li>
+                                  <li> &nbsp;<i className="bi bi-person" />{item.name}</li>
                                   <li>
                                   <i className="bi bi-chat-dots"/>
                                   
