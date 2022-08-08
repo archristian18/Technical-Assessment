@@ -1,5 +1,8 @@
 
 # Technical-Assessment
-Not Implemented 
-*implement formatting of post contents
-*implement WYSIWYG editor for posts (TinyMCE, FCKEditor)
+~ Create Post with images, react post and comment, and comment post ~
+
+* http://localhost:3000/author/login
+* Using Xampp
+- Create Users 5 Characters/Digits
+
