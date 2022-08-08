@@ -8,10 +8,6 @@ import Footer from './Footer';
 import Banner from './Banner';
 
 
-
-
-
-
 function Post(props) {
 
       //style selection
@@ -251,17 +247,20 @@ function Post(props) {
                             </div><div style={{padding:'7px'}}>
                             Like 
                             &nbsp;
+                                
+                                <select name="react"  defaultValue={'DEFAULT'}  onChange={e => handleChange(e, item.id)} style={select}> 
+                                <option value="DEFAULT" disabled hidden> {item.reactName} </option>
+                                <option value="👍" id="2" >
+                                <span role="img" aria-label="like">👍</span> 
+                                </option>
+                                <option value="❤️" id="3">
+                                <span role="img" aria-label="heart">❤️</span> 
+                                </option>
+                                <option value="🙂">
+                                    <span role="img" aria-label="smile">🙂</span> 
+                                </option>
+                                </select>
 
-                            <select name="react" id="details"   defaultValue={'DEFAULT'} onChange={e => handleChange(e, item.id)} style={select}> 
-                            <option value="DEFAULT" id="0"  disabled hidden>{item.reactName}</option>
-                            <option value="👍" id="2" >👍</option>
-                            <option value="❤️" id="3">❤️</option>
-                            <option value="🙂" id="4">🙂</option>                            
-                            </select>
-
-             
-                            
-                            
                             </div>
                             {/* End comment #1 */}
                   </article>

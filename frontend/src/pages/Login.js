@@ -46,7 +46,6 @@ function Login() {
                 if(res.data.status === 200)
                 {
 
-
                     localStorage.setItem('name', res.data.name)
                     localStorage.setItem('id', res.data.id)
                     localStorage.setItem('token', res.data.token)

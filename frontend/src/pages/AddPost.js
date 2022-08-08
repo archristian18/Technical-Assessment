@@ -3,11 +3,7 @@ import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 
-
-
 function AddPost() {
-
-
 
      // Getting the value in input type Post
     const history = useHistory();
@@ -89,8 +85,6 @@ function AddPost() {
                                         <span className="text-danger">{postInput.error_list.text}</span>
                                     </div>
                                     
-
-                                 
                                     <div className="form-group mb-3">
                                         <button type="submit" className="btn btn-primary">Submit Post</button>
                                     </div>

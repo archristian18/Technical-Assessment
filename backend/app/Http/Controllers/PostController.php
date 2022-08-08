@@ -101,13 +101,14 @@ class PostController extends Controller
         ->where('author_id', $author)
         ->get();
 
+        $data = $users->pluck('name')->toArray();
      
-        $data = "" ;
-        foreach($users as $image) {
-            $temp = [];
-            $temp = $image->name;
-            $data = $temp;
-        }   
+        // $data = "" ;
+        // foreach($users as $image) {
+        //     $temp = [];
+        //     $temp = $image->name;
+        //     $data = $temp;
+        // }   
         return $data;
 
     }

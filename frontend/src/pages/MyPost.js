@@ -33,8 +33,6 @@ function MyPost() {
                 history.push('/author/login');
             }
         });
-        
-
     
     }, []);
 
@@ -84,18 +82,13 @@ const handleChange = (e, id) => {
   });
 
 }
-
-    
+   
       return (
         <div >
 
-<Banner />
-     
-          
+        <Banner />
+         
           <main id="main">
-
-   
-
 
             {/* ======= Blog Section ======= */}
             <section id="blog" className="blog">
@@ -133,16 +126,20 @@ const handleChange = (e, id) => {
                             </li>  
                             </ul>
 
-
                                   <ul>
                                     {/* <ReactPost props={item.id}/> */}
                                     <select name="react"  defaultValue={'DEFAULT'}  onChange={e => handleChange(e, item.id)} style={select}> 
                                     <option value="DEFAULT"   disabled hidden> {item.reactName}  </option>
-                                    <option value="👍" id="2" >👍</option>
-                                    <option value="❤️" id="3">❤️</option>
-                                    <option value="🙂" id="4">🙂</option> 
+                                    <option value="👍" id="2" >
+                                    <span role="img" aria-label="like">👍</span> 
+                                    </option>
+                                    <option value="❤️" id="3">
+                                    <span role="img" aria-label="heart">❤️</span> 
+                                    </option>
+                                    <option value="🙂">
+                                        <span role="img" aria-label="smile">🙂</span> 
+                                    </option>
                                     </select>
-
                                     <li>
                                     <i className="bi bi-chat-dots"/>
                                   
@@ -170,27 +167,16 @@ const handleChange = (e, id) => {
                         </div>
                       ))}
            
-
-
-
                     </div>{/* End blog posts list */}
-
-
-
                     
                   </div>
                 </div>
               </div>
             </section>{/* End Blog Section */}
-
-
             
           </main>{/* End #main */}
 
-        
             <Footer />
-
-
 
         </div>
         

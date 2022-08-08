@@ -3,8 +3,6 @@ import {Link, useHistory} from 'react-router-dom';
 import swal from 'sweetalert';
 import axios from 'axios';
 
-
-
 function Banner() {
 
   const history = useHistory();
@@ -27,7 +25,6 @@ function Banner() {
 
       return (          
           
-
             <div className="breadcrumbs d-flex align-items-center"  
             style={{backgroundImage: 'url("../../assets/img/blog-header.jpg")',  
             position: 'relative'}} >
@@ -39,8 +36,7 @@ function Banner() {
                 {/* <img src="assets/img/logo.png" alt=""> */}
                 <h1 className="d-flex align-items-center">{username}</h1>
               </a>
-
-              
+       
               <nav id="navbar" className="navbar">
                 <ul>
 
@@ -48,7 +44,6 @@ function Banner() {
                   <li> <Link to="/mypost">My Post</Link></li>
                   <li><Link to="/author/add">Add Post</Link></li>
                  
-
                 </ul>
                 <Link onClick={logoutSubmit} to="/author/login">Logout</Link>
               </nav>{/* .navbar */}
@@ -56,8 +51,6 @@ function Banner() {
             </div>
             {/* End Header */}
             </header>
-
-       
 
             {/* ======= Breadcrumbs ======= */}
 

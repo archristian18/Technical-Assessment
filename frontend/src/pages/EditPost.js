@@ -15,7 +15,6 @@ function EditPost(props){
       }
     };
 
-    
     const history = useHistory();
     const post_id = props.match.params.id;
     const [postInput, setPost] = useState({
@@ -39,17 +38,13 @@ function EditPost(props){
 
 }, [props.match.params.id, history]);
 
-
-
   // Create const to get the event form data and link to backend
   const UpdatePost = (e) => {
     e.preventDefault();
     
-
     const fData = new FormData();
 
     fData.append('text', postInput);
-
 
     axios.post(`/api/post/update${post_id}`, fData).then(res => {
     // if else, Is for the Validation of form inputed
@@ -65,9 +60,6 @@ function EditPost(props){
         } 
     });
 }
-
-
-
 
 return (
 
