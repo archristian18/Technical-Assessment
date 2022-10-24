@@ -4,13 +4,13 @@ import React from 'react';
 function Footer() {
 
       return (
-        <footer id="footer" className="footer" >
+        <footer id="footer" className="footer">
         
         {/* ======= Footer ======= */}
             <div className="footer-content">
               <div className="container">
                 <div className="row gy-4">
-                  <div className="col-lg-5 col-md-12 footer-info">
+                  <div className="col-lg-5 col-md-12 my-l-12 footer-info">
                   <h4>Contact Us</h4>
                   <strong>Phone:</strong> +1 5589 55488 55<br />
                   <strong>Email:</strong> info@example.com<br />

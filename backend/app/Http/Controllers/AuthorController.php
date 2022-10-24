@@ -51,8 +51,6 @@ class AuthorController extends Controller
     public function loginAuth(Request $request) 
     {
 
-      
-
         $validator = Validator::make($request->all(),[
             'name'=>'required',
             'password'=>'required' 
