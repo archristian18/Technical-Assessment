@@ -60,10 +60,7 @@ class ReactCommentController extends Controller
             }
     
         }
-      
 
     }
 
-
-    
 }

@@ -16,7 +16,6 @@ use App\Http\Controllers\CountController;
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
 
-
     //Author PAGE
     Route::post("/logout", [AuthorController::class, 'logout']);
     
@@ -29,7 +28,6 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     
     Route::post("/author/posts{id}", [PostController::class, 'index']); 
 
-
     //COMMENT PAGE
     Route::post("/comment/posts{id}", [CommentController::class, 'posts']); 
     Route::post("/comment", [CommentController::class, 'index']); 
@@ -39,11 +37,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     //React Post 
     Route::post("/react/post", [ReactPostController::class, 'store']); 
 
-
     //React Comment
     Route::post("/react/comment", [ReactCommentController::class, 'store']); 
-
-
 
 });
     

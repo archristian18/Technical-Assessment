@@ -9,19 +9,15 @@ use App\Models\ReactPost;
 
 class ReactPostController extends Controller
 {
-
-
     // Added Reaction in Post post
     public function store(Request $request)
     {
-
         $validator = Validator::make($request->all(),[
             'name'=>'required',
             'post_id'=>'required',
             'author_id'=>'required',
 
         ]);
-
         if($validator->fails())
         {
             return response()->json([

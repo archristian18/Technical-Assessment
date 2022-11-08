@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 import Register from './pages/Register';
 
@@ -30,24 +30,16 @@ function App() {
   return (
     <div className="App">
         <Router>
-
-          <Switch>
             <Route path="/home" component={Homepage} />
             <Route path="/edit/:id" component={EditPost} />
             {/* comment POST */}
- 
             <Route path="/post/:id" component={Post} /> 
             {/* My post  */}
             <Route path="/mypost" component={MyPost} />
-
             <Route path="/author/add" component={AddPost} />
             <Route path="/register" component={Register} />
             <Route path="/author/login" component={Login} />
 
-
-        
-
-          </Switch>
         </Router>
     </div>
   );
