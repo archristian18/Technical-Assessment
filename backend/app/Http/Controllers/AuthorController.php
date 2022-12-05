@@ -17,7 +17,6 @@ class AuthorController extends Controller
     public function store(Request $request)
     {
        
-
         $validator = Validator::make($request->all(),[
             'name'=>'required|unique:authors|min:5',
             'password'=>'required|min:5'

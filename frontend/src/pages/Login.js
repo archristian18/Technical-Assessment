@@ -41,7 +41,7 @@ function Login() {
 
         axios.get('/sanctum/csrf-cookie').then(response => {
             axios.post(`/api/login/auth`, data).then(res => {
-
+   
                 // if else, Is for the Validation of form inputed
                 if(res.data.status === 200)
                 {

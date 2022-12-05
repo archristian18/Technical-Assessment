@@ -47,6 +47,8 @@ function Register() {
                 {
               
                     setAuthor({...authorInput, error_list: res.data.validate_err });
+                } else {
+                    console.log("die")
                 }
                 
             });
